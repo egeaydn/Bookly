@@ -1,7 +1,7 @@
 ﻿using BooklyApi.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace BooklyApi.AppDbContext
+namespace BooklyApi.DataContext
 {
 	public class AppDbContext : DbContext
 	{
