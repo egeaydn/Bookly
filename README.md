@@ -126,6 +126,8 @@ Bookly, randevu yönetim sistemi için geliştirilmiş **.NET 8 Web API** projes
 </div>
 
 ### 👥 **Users API**
+🔗 **Canlı URL:** [https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Users](https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Users)
+
 ```
 GET    /api/Users          - Tüm kullanıcıları listele
 GET    /api/Users/{id}     - Kullanıcı detayını getir
@@ -135,6 +137,8 @@ DELETE /api/Users/{id}     - Kullanıcı sil
 ```
 
 ### 🛠️ **Services API**
+🔗 **Canlı URL:** [https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Services](https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Services)
+
 ```
 GET    /api/Services          - Tüm hizmetleri listele
 GET    /api/Services/{id}     - Hizmet detayını getir
@@ -144,6 +148,8 @@ DELETE /api/Services/{id}     - Hizmet sil
 ```
 
 ### 👨‍⚕️ **Providers API**
+🔗 **Canlı URL:** [https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Providers](https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Providers)
+
 ```
 GET    /api/Providers          - Tüm sağlayıcıları listele
 GET    /api/Providers/{id}     - Sağlayıcı detayını getir
@@ -153,6 +159,8 @@ DELETE /api/Providers/{id}     - Sağlayıcı sil
 ```
 
 ### 📅 **Appointments API**
+🔗 **Canlı URL:** [https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Appointments](https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/Appointments)
+
 ```
 GET    /api/Appointments          - Tüm randevuları listele (ilişkili verilerle)
 GET    /api/Appointments/{id}     - Randevu detayını getir
@@ -162,6 +170,8 @@ DELETE /api/Appointments/{id}     - Randevu sil
 ```
 
 ### 📋 **AppointmentStatuses API**
+🔗 **Canlı URL:** [https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/AppointmentStatuses](https://prodora-api-ege-d5gadjgtb3ahh2hy.westeurope-01.azurewebsites.net/api/AppointmentStatuses)
+
 ```
 GET    /api/AppointmentStatuses          - Tüm durumları listele
 GET    /api/AppointmentStatuses/{id}     - Durum detayını getir
