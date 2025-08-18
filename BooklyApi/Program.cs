@@ -15,11 +15,8 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 // Configure CORS policy
 
 app.UseHttpsRedirection();
@@ -27,5 +24,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Default route for root URL
+app.MapGet("/", () => "Bookly API is running! Go to /swagger for API documentation.");
 
 app.Run();
