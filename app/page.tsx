@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Button } from "@heroui/button";
 import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
 import { Link } from "@heroui/link";
@@ -8,19 +7,6 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  // Stats için state
-  const [stats, setStats] = useState({
-    users: 0,
-    reservations: 0,
-    products: 0,
-    comments: 0,
-  });
-
-     useEffect(()=>{
-      
-     },[])
-
-
   return (
     <main className="flex flex-col items-center px-6 py-16 space-y-20">
       {/* Hero Section */}
@@ -29,8 +15,8 @@ export default function Home() {
           🚀 Bookly API
         </h1>
         <p className="text-lg text-gray-600">
-          Kolayca randevu oluştur, yönet ve takip et.{" "}
-          <span className="font-semibold">Modern rezervasyon altyapısı</span>.{" "}
+          Kolayca randevu oluştur, yönet ve takip et.  
+          <span className="font-semibold"> Modern rezervasyon altyapısı</span>  
           .NET 8 & Azure SQL ile geliştirildi.
         </p>
 
@@ -86,45 +72,6 @@ export default function Home() {
             <p className="text-gray-600">
               API endpointlerini anında test et ve dokümantasyonu keşfet.
             </p>
-          </CardBody>
-        </Card>
-      </section>
-
-      {/* İstatistik Kartları */}
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto my-12">
-        <Card>
-          <CardHeader>
-            <h3 className="font-bold text-lg">👥 Kullanıcılar</h3>
-          </CardHeader>
-          <CardBody>
-            <p>{stats.users} kişi</p>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <h3 className="font-bold text-lg">📅 Rezervasyonlar</h3>
-          </CardHeader>
-          <CardBody>
-            <p>{stats.reservations} adet</p>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <h3 className="font-bold text-lg">🛒 Ürünler</h3>
-          </CardHeader>
-          <CardBody>
-            <p>{stats.products} adet</p>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <h3 className="font-bold text-lg">💬 Yorumlar</h3>
-          </CardHeader>
-          <CardBody>
-            <p>{stats.comments} adet</p>
           </CardBody>
         </Card>
       </section>
@@ -242,7 +189,7 @@ export default function Home() {
           </CardBody>
         </Card>
       </section>
-
     </main>
+    
   );
 }
