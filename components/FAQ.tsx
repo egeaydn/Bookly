@@ -69,7 +69,7 @@ export default function FAQ({ faqs = DEFAULT_FAQS }: { faqs?: FAQItem[] }) {
           return (
             <div
               key={i}
-              className="bg-white rounded-xl border shadow-sm overflow-hidden"
+              className=" rounded-xl border shadow-sm overflow-hidden"
             >
               <button
                 aria-expanded={isOpen}
