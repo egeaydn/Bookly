@@ -3,8 +3,10 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@heroui/button";
-import { Card, CardHeader, CardBody } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import Link from "next/link";
+import Subtitle from "@/components/Subtitle";
+import FAQ from "@/components/FAQ";
 
 type Props = { userCount: number };
 
@@ -26,6 +28,79 @@ const slides = [
   },
 ];
 
+// Küçük slider için görseller (alt slider)
+const bottomSlides = [
+  { img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80", caption: "Haftanın Fırsatları" },
+  { img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=80", caption: "Son Dakika İndirimleri" },
+  { img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1400&q=80", caption: "Popüler Mekanlar" },
+];
+
+function SmallSlider() {
+  const [idx, setIdx] = useState(0);
+  const autoRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    autoRef.current = window.setInterval(() => {
+      setIdx((i) => (i + 1) % bottomSlides.length);
+    }, 4000);
+    return () => {
+      if (autoRef.current) window.clearInterval(autoRef.current);
+    };
+  }, []);
+
+  return (
+    <section className="w-full max-w-full mx-auto mt-10 px-6">
+      <div className="relative h-[24vh] md:h-[28vh] lg:h-[32vh] w-full overflow-hidden rounded-xl">
+        {bottomSlides.map((s, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-600 ease-in-out ${i === idx ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"}`}
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.18)), url('${s.img}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="h-full w-full flex items-end md:items-center md:justify-start p-6">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-md p-4 text-white max-w-xs">
+                <div className="text-sm md:text-base font-semibold">{s.caption}</div>
+                <div className="text-xs text-white/80 mt-1">Randevunu kaçırma — fırsatları yakala.</div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* arrows small */}
+        <button
+          onClick={() => setIdx((i) => (i - 1 + bottomSlides.length) % bottomSlides.length)}
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-20 shadow"
+          aria-label="prev-small"
+        >
+          ‹
+        </button>
+        <button
+          onClick={() => setIdx((i) => (i + 1) % bottomSlides.length)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-20 shadow"
+          aria-label="next-small"
+        >
+          ›
+        </button>
+
+        {/* dots */}
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-20">
+          {bottomSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIdx(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${i === idx ? "bg-white scale-125" : "bg-white/50"}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function HeroLandingClient({ userCount }: Props) {
   const [index, setIndex] = useState(0);
   const autoplayRef = useRef<number | null>(null);
@@ -42,8 +117,7 @@ export default function HeroLandingClient({ userCount }: Props) {
   return (
     <main className="min-h-screen flex flex-col">
       {/* SLIDER - KISALTILMIŞ BOY */}
-      <section className="relative w-full overflow-hidden mb-50">
-        {/* height azaltıldı: mobil 42vh, md 52vh */}
+      <section className="relative w-full overflow-hidden mb-22">
         <div className="relative h-[42vh] md:h-[52vh] lg:h-[56vh] w-full">
           {slides.map((s, i) => (
             <div
@@ -67,12 +141,12 @@ export default function HeroLandingClient({ userCount }: Props) {
                       <div className="text-xs uppercase tracking-wider text-white/80">Kayıtlı Kullanıcı</div>
                       <div className="text-4xl md:text-5xl font-extrabold mt-1">{userCount}</div>
                       <div className="mt-3 flex gap-3">
-                        <Button asChild>
+                        <Button>
                           <Link href="/signup" className="px-4 py-2">
                             Başlayalım
                           </Link>
                         </Button>
-                        <Button variant="bordered" asChild>
+                        <Button variant="bordered">
                           <Link href="/features" className="px-4 py-2">
                             Özellikler
                           </Link>
@@ -116,7 +190,7 @@ export default function HeroLandingClient({ userCount }: Props) {
       </section>
 
       {/* KARTLAR - slider altı, skeçteki kutucuklar */}
-      <section className="max-w-6xl w-full mx-auto px-6 -mt-8 md:-mb-92">
+      <section className="max-w-6xl w-full mx-auto px-6 -mt-8 md:-mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Card 1 */}
           <Card className="transform hover:-translate-y-1 transition-transform duration-300">
@@ -134,7 +208,7 @@ export default function HeroLandingClient({ userCount }: Props) {
                 <h4 className="text-lg font-semibold">Online Asistan</h4>
                 <p className="text-sm text-gray-600 mt-1">Randevunu hızlıca oluştur — rehberli deneyimle.</p>
                 <div className="mt-4">
-                  <Button asChild>
+                  <Button>
                     <Link href="/assistant" className="px-4 py-2">
                       Deneyin
                     </Link>
@@ -159,7 +233,7 @@ export default function HeroLandingClient({ userCount }: Props) {
                 <h4 className="text-lg font-semibold">Rezervasyon Sorgula</h4>
                 <p className="text-sm text-gray-600 mt-1">Mevcut randevularını ve detaylarını hızlıca gör.</p>
                 <div className="mt-4">
-                  <Button asChild>
+                  <Button>
                     <Link href="/search" className="px-4 py-2">
                       Sorgula
                     </Link>
@@ -184,7 +258,7 @@ export default function HeroLandingClient({ userCount }: Props) {
                 <h4 className="text-lg font-semibold">Özel İndirimler</h4>
                 <p className="text-sm text-gray-600 mt-1">Abone ol, kaçırılmayacak kampanyaları kap.</p>
                 <div className="mt-4">
-                  <Button variant="bordered" asChild>
+                  <Button variant="bordered">
                     <Link href="/subscribe" className="px-4 py-2">
                       Abone Ol
                     </Link>
@@ -196,13 +270,22 @@ export default function HeroLandingClient({ userCount }: Props) {
         </div>
       </section>
 
+      {/* Subtitle (neden Bookly) */}
+      <div className="mt-8">
+        <Subtitle />
+      </div>
+
+      {/* SMALL SLIDER -> Subtitle altına eklendi */}
+      <SmallSlider />
+
       {/* küçük footer / trust */}
-      <section className="py-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center text-gray-700">
+      <section className="py-8 ">
+        <div className="max-w-4xl mx-auto text-center ">
           <h3 className="text-lg font-semibold">Bookly — Minimal Rezervasyon Altyapısı</h3>
           <p className="text-sm opacity-80 mt-2">.NET 8 • Azure SQL • EF Core • Swagger</p>
         </div>
       </section>
+      <FAQ />
     </main>
   );
 }
