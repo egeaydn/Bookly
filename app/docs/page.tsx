@@ -4,7 +4,6 @@ import { Button } from "@heroui/button";
 import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
 import { Link } from "@heroui/link";
 import Image from "next/image";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
